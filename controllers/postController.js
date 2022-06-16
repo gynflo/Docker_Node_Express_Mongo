@@ -6,14 +6,14 @@ exports.createPost = async (req, res, next) => {
     try {
         const post = await Post.create(req.body);
         res.status(201).json({
-            status: "success",
+            status: "Success",
             data: {
                 post
             }
         })
     } catch (e) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
         })
     }
 };
@@ -23,7 +23,7 @@ exports.getAllPosts = async (req, res, next) => {
         const posts = await Post.find();
 
         res.status(200).json({
-            status: "success",
+            status: "Success",
             result: posts.length,
             data: {
                 posts
@@ -33,7 +33,7 @@ exports.getAllPosts = async (req, res, next) => {
         console.log("🚀 ~ file: postController.js ~ line 35 ~ exports.getAllPosts= ~ e", e)
 
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
         })
     }
 };
@@ -42,14 +42,14 @@ exports.getOnePost = async (req, res, next) => {
     try {
         const post = await Post.findById(req.params.id);
         res.status(200).json({
-            status: "success",
+            status: "Success",
             data: {
                 post
             }
         })
     } catch (e) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
         })
     }
 };
@@ -61,14 +61,14 @@ exports.updatePost = async (req, res, next) => {
             runValidators: true
         });
         res.status(203).json({
-            status: "success",
+            status: "Success",
             data: {
                 post
             }
         })
     } catch (e) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
         })
     }
 };
@@ -77,11 +77,11 @@ exports.deletePost = async (req, res, next) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
         res.status(200).json({
-            status: "success",
+            status: "Success",
         })
     } catch (e) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
         })
     }
 };
