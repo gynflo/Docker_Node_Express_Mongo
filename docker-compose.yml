@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+  
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=gynflo
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+
