@@ -11,3 +11,7 @@ services:
     env_file:
       - ./.env.dev
     command: npm run dev
+
+  redis:
+    env_file:
+      - ./.env.dev

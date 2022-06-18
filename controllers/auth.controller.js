@@ -10,6 +10,7 @@ exports.signUp = async (req, res) => {
             username,
             password: hashPassword
         });
+        req.session.user = newUser;
         res.status(201).json({
             status: "Success",
             data: {
@@ -18,7 +19,7 @@ exports.signUp = async (req, res) => {
         })
     } catch (e) {
         res.status(400).json({
-            status: "Fail"
+            status: "Fail",
         })
     }
 };
@@ -35,8 +36,8 @@ exports.login = async (req, res) => {
         }
 
         const comparePassword = await bcrypt.compare(password, user.password);
-        console.log("🚀 ~ file: auth.controller.js ~ line 38 ~ exports.login= ~ comparePassword", comparePassword)
         if (comparePassword) {
+            req.session.user = user;
             res.status(200).json({
                 status: "success"
             })

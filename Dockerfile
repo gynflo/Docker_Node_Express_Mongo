@@ -1,6 +1,6 @@
 FROM node:15
 WORKDIR /app
-COPY package.json .
+COPY package* ./
 
 # Evite l'installation par defaut des devDependencies du package.json
 ARG NODE_ENV
