@@ -2,6 +2,7 @@ const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT, SESSION_SECRET, REDIS_
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const session = require('express-session');
 const { createClient } = require('redis');
@@ -46,9 +47,16 @@ connectAndRetry();
 
 
 
-app.get('/', (_, res) => {
+app.get('/api/v1/', (_, res) => {
     res.send('Everything is ok !!!');
+    console.log('Yeah it ok ');
+
 });
+
+/* to expose information provided by the reverse proxy */
+app.enable("trust proxy");
+/* Cors policy */
+app.use(cors({}))
 
 /* Cache store */
 app.use(session({
@@ -56,16 +64,16 @@ app.use(session({
     secret: SESSION_SECRET,
     cookie: {
         secure: false,
-        resave: false,
         httpOnly: true,
-        maxAge: 30000, //milliseconds 
+        maxAge: 30000, //milliseconds  => 3 0s
     }
 }))
 
 // Add body on req 
 app.use(express.json());
-
-app.use('/api/v1/posts', postRouter);
+//middleware req.session.user => req.user
+const protect = require('./middlewares/authMiddleware');
+app.use('/api/v1/posts', protect, postRouter);
 app.use('/api/v1/users', userRouter);
 
 app.listen(port, () => {
