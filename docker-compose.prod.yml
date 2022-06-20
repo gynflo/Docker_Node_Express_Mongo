@@ -9,14 +9,14 @@ services:
       context: .
       args:
         NODE_ENV: production
-    environment:
-      - NODE_ENV=production
-      - SESSION_SECRET=${SESSION_SECRET}
-      - MONGO_USER=${MONGO_USER}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
+    env_file:
+      - ./.env.dev
     command: node index.js
 
   mongo:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+  redis:
+    env_file:
+      - ./.env.dev
