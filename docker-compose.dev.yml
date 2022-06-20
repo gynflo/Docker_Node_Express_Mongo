@@ -14,6 +14,10 @@ services:
     env_file:
       - ./.env.dev
     command: npm run dev
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=gynflo
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
 
   redis:
     env_file:
