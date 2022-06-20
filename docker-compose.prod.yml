@@ -11,15 +11,13 @@ services:
         NODE_ENV: production
     environment:
       - NODE_ENV=production
-      - SESSION_SECRET=${SESSION_SECRET}
-      - MONGO_USER=${MONGO_USER}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - SESSION_SECRET=secret
+      - MONGO_USER=gynflo
+      - MONGO_PASSWORD=mypassword
     command: node index.js
 
   mongo:
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-  redis:
-    env_file:
-      - ./.env.dev
+      - MONGO_INITDB_ROOT_USERNAME=gynflo
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+ 
