@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   nginx:
-    ports: 
+    ports:
       - "80:80"
 
   node-app:
@@ -12,9 +12,11 @@ services:
     environment:
       - NODE_ENV=production
       - SESSION_SECRET=${SESSION_SECRET}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
     command: node index.js
 
   mongo:
     environment:
-      - MONGO_USER=${MONGO_USER}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
