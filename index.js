@@ -1,4 +1,6 @@
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT, SESSION_SECRET, REDIS_PORT, REDIS_URL } = require('./config/config');
+console.log("🚀 ~ file: index.js ~ line 2 ~ MONGO_PASSWORD", MONGO_PASSWORD)
+console.log("🚀 ~ file: index.js ~ line 2 ~ MONGO_USER", MONGO_USER)
 
 const express = require('express');
 const mongoose = require('mongoose');
