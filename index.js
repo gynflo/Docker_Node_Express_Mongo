@@ -45,7 +45,7 @@ connectAndRetry();
 
 
 app.get('/api/v1/', (_, res) => {
-    res.send('Everything is ok !!!');
+    res.send('Hello World with watchtower !!');
     console.log('Yeah it ok ');
 
 });
@@ -76,3 +76,4 @@ app.use('/api/v1/users', userRouter);
 app.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}`);
 });
+
